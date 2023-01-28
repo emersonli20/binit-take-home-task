@@ -3,7 +3,7 @@ import timm
 from torchvision.datasets import CIFAR10
 from torchvision import transforms
 from torch.utils.data import Subset
-import umap
+import umap.umap_ as umap
 from matplotlib import pyplot as plt
 import typer
 import os

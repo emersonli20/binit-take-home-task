@@ -4,3 +4,4 @@ torch==1.13.1
 torchvision==0.14.1
 typer==0.7.0
 umap_learn==0.5.3
+tqdm

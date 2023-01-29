@@ -13,8 +13,11 @@ def main(directory: str):
     # create model
     m = timm.create_model('resnet50', pretrained=True)
 
-    # create training dataset
-    transform = transforms.ToTensor()
+    # create training dataset; normalize
+    transform = transforms.Compose(
+    [transforms.ToTensor(),
+     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+    
     trainset = CIFAR10(root='./data', train=True, download=True, transform=transform)
 
     # choose 2 classes in CIFAR10
@@ -45,7 +48,7 @@ def main(directory: str):
     data = o_flat.detach().numpy()
 
     # reduce the features to a 2d embedding space
-    reducer = umap.UMAP(n_neighbors=7, min_dist=0.025, random_state=42)
+    reducer = umap.UMAP(n_neighbors=15, min_dist=0.05, random_state=42)
     reducer.fit(data)
     embedding = reducer.transform(data)
 
